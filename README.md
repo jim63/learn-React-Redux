@@ -51,8 +51,57 @@ JSX 並非一種全新的語言，而是一種語法糖（Syntatic Sugar），�
 
 ### React's props system
 - System for passing data from a parent component to a child component, the goal is to show some content to users or react to user interaction.
-- 
+- The child cannot send props to the parent.
 
-fff
 
-		 	
+![props system](https://github.com/jim63/learn-React-Redux/blob/master/imgs/propsSystem.png?raw=true)
+
+index.js
+
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import CommentDetail from "./CommentDetail";
+
+const App = () => {
+  return (
+    <div className="ui container comments">
+      <CommentDetail name="Sam" />
+      <CommentDetail name="Alex" />
+      <CommentDetail name="Jim" />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector("#root"));
+```
+
+CommentDetail.js
+
+```js
+import React from "react";
+import Faker from "faker";
+
+const CommentDetail = props => {
+  return (
+    <div className="comment">
+      <a href="/" className="avatar">
+        <img src={Faker.image.avatar()} alt="avatar" />
+      </a>
+      <div className="content">
+        <a href="/" className="author">
+          {props.name}
+        </a>
+        <div className="metadata">
+          <span className="date">Today At 6:00PM</span>
+        </div>
+        <div className="text">Nuce Blog post</div>
+      </div>
+    </div>
+  );
+};
+
+export default CommentDetail;
+```
+
