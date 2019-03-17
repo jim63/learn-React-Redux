@@ -17,6 +17,13 @@ class App extends React.Component {
     );
   }
 
+  componentDidMount() {
+    console.log("render to the screen");
+  }
+  componentDidUpdate() {
+    console.log("just updated");
+  }
+
   render() {
     return (
       <div>
